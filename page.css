@@ -1,0 +1,38 @@
+
+	.full{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border: 1px solid #ccc;
+		overflow: auto;
+	}
+
+	.panel{
+		position: relative;
+	}
+
+	table{width: 100%;}
+	td{text-align: center;}
+	#left{
+		width: 300px;
+		right: auto;
+	}
+	#left .l{
+		height: 20px;
+		line-height: 20px;
+	}
+	#main{
+		left: 300px;
+	}
+
+	#main .m{
+		height: 50px;
+		line-height: 50px;
+	}
+	#left .l,#main .m{
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+	}

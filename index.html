@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="page.css">
+</head>
+<body>
+	<div id="left" class="full"></div>
+	<div id="main" class="full"></div>
+<script type="text/javascript" src="jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="Dart/Dart.js"></script>
+<script type="text/javascript" src="ScrollControlar.js"></script>
+<script type="text/javascript">
+(function(){
+	var left = $("#left"), main=$("#main");
+
+	var l = 100, lhtml =[], mhtml=[];
+	for(var i=0;i<l;i++){
+		lhtml.push("<div index='"+i+"' class='l'>"+i+"</div>");
+		mhtml.push("<tr index='"+i+"' class='m'><td>"+i+"</td></tr>");
+	}
+
+	left.append($("<div class='panel'></div>").html(lhtml.join("")));
+	main.append($("<div class='panel'></div>").html("<table>"+mhtml.join("")+"</table>"));
+
+
+
+
+
+	var s = new window.app.ScrollControlar({
+		elSelector: '#main',
+		rowsElSelector:'#main .m',
+		targetElSelector: '#left',
+		targetRowsElSelector: '#left .l',
+		rowHeight: 52,
+		targetRowHeight: 20,
+		indexAttr: 'index'
+	});
+
+	var s2 = new window.app.ScrollControlar({
+		elSelector: '#left',
+		rowsElSelector:'#left .l',
+		targetElSelector: '#main',
+		targetRowsElSelector: '#main .m',
+		rowHeight: 20,
+		targetRowHeight: 52,
+		indexAttr: 'index'
+	});
+
+
+	// /**
+	//  *  计算当前触发scroll事件和上一次触发scroll事件的时间间隔。
+	//  *	如果间隔时间很短（<200ms）那就认为用户是在连续滚动。(scrolling)
+	//  *	如果间隔时间较长(>=200ms)就认为用户之前有停顿，这是一次新的滚动。(scrollstart)
+	//  * 
+	//  */
+ // 	var scrollTime = new Date().getTime();
+ // 	var lastScrollTop = 0;
+
+
+	// //$("#main").unbind("scroll")
+
+	// function onScroll(){
+	// 	var time = new Date().getTime(), delta = time-scrollTime;
+	// 	var curScrollTop = this.scrollTop;
+	// 	if(delta<200){
+	// 		Dart.trigger('scrolling', curScrollTop-lastScrollTop);
+	// 	}else{			
+	// 		Dart.trigger('scrollstart');
+	// 	}	
+	// 	lastScrollTop = curScrollTop;
+	// 	scrollTime = time;
+	// }
+
+	// main.on('scroll', onScroll);
+	// left.on('scroll', function(){
+	// 	console.info('left')
+	// })
+
+	// Dart.bind('scrollstart', function(e, args){
+	// 	var topRow = getFirstInView(main, main.find("tr.m"));
+	// 	var index = topRow.attr('index');
+	// 	var leftRow = left.find(".l[index='"+index+"']");
+	// 	var leftRowTop = leftRow.offset().top;
+	// 	left.scrollTop(left.scrollTop()+leftRowTop);
+
+	// });
+	// Dart.bind('scrolling', function(e, scrollDelta){
+	// 	left.scrollTop(left.scrollTop()+scrollDelta*(20/52));
+	// });
+
+	// function getFirstInView(content, rows){
+	// 	var first;
+	// 	for(var i=0,l=rows.length;i<l;i++){
+	// 		var row = $(rows[i]);
+	// 		if(row.offset().top>=0){
+	// 			return row;
+	// 		}
+	// 	}
+	// }
+
+}());
+</script>
+</body>
+</html>
